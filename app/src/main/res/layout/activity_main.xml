@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="@string/questionThree" />
         <RadioGroup
+            android:id="@+id/third_question"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -64,21 +65,24 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/lessThanThree"
                 android:text="@string/anwserRadio1"
-                android:onClick="onRadioButtonClicked"/>
+                android:onClick="onRadioButtonClicked1"
+                android:checked="false"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/lessThree"
                 android:text="@string/anwserRadio2"
-                android:onClick="onRadioButtonClicked"/>
+                android:onClick="onRadioButtonClicked1"
+                android:checked="false"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/lessMoreThree"
                 android:text="@string/anwserRadio3"
-                android:onClick="onRadioButtonClicked"/>
+                android:onClick="onRadioButtonClicked1"
+                android:checked="false"/>
 
         </RadioGroup>
         <TextView
@@ -87,17 +91,83 @@
             android:layout_height="wrap_content"
             android:text="@string/questionFour" />
 
+        <RadioGroup
+            android:id="@+id/forth_question"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Football"
+                android:text="@string/anwserRadio4"
+                android:onClick="onRadioButtonClicked2"
+                android:checked="false"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Basketball"
+                android:text="@string/anwserRadio5"
+                android:onClick="onRadioButtonClicked2"
+                android:checked="false"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Tennis"
+                android:text="@string/anwserRadio6"
+                android:onClick="onRadioButtonClicked2"
+                android:checked="false"/>
+
+        </RadioGroup>
         <TextView
             style="@style/questionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/questionFive" />
 
+        <EditText
+            android:id="@+id/fithAnwser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/number_example"
+            android:inputType="date"
+            />
+
         <TextView
             style="@style/questionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/questionSix" />
+            android:text="@string/questionSix"
+            android:id="@+id/textView" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox5"
+            android:id="@+id/checkbox_basketball"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox1"
+            android:id="@+id/checkbox_rowing"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox4"
+            android:id="@+id/checkbox_boxing"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox2"
+            android:id="@+id/checkbox_weightlifting"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox3"
+            android:id="@+id/checkbox_canoeing"/>
 
         <TextView
             style="@style/questionText"
@@ -105,11 +175,25 @@
             android:layout_height="wrap_content"
             android:text="@string/questionSeven" />
 
+        <EditText
+            android:id="@+id/seventhAnwser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/city_example"
+            android:inputType="textCapWords"
+            />
+
         <TextView
             style="@style/questionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/questionEight" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/getDirections"
+            android:id="@+id/getDirections"
+            android:onClick="getDirections"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,5 +212,12 @@
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/display_result"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/share_results"
+            android:id="@+id/share_result"
+            android:onClick="share_email"
+            />
     </LinearLayout>
 </ScrollView>

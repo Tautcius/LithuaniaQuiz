@@ -17,12 +17,22 @@
     <string name="anwserRadio3">More than 3 millions</string>
     <string name="getResults">Check my result</string>
     <string name="result_title">This is your result:</string>
-    
-    
+    <string name="anwserRadio4">Football</string>
+    <string name="anwserRadio5">Basketball</string>
+    <string name="anwserRadio6">Tennis</string>
+    <string name="number_example">3</string>
+    <string name="checkbox1">Academinc Rowing</string>
+    <string name="checkbox2">Weightlifting</string>
+    <string name="checkbox3">Canoeing</string>
+    <string name="checkbox4">Box</string>
+    <string name="checkbox5">Basketball</string>
+    <string name="city_example">Tallin</string>
+    <string name="getDirections">Get directions</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="date_label_set">Press the button to set the date</string>
     <string name="date_button_set">Set Date</string>
     <string name="date_view_set">The Date is: </string>
-    <string name="date_selected"></string>
+    <string name="share_results">Share your result via email</string>
+
 </resources>
