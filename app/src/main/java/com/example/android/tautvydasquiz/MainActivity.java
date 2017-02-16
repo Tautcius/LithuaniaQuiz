@@ -12,12 +12,13 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     int result = 0; //counting results;
 
-    private EditText firstAnswer, secondAnswer, fithAnwser, seventhAnwser;
+    private EditText firstAnswer, secondAnswer, fifthAnwser, seventhAnwser;
     private RadioGroup thirdQuestion, forthQuestion;
     private RadioButton thirdAnwserRadio, forthAnserRadio;
     private int thirdAnwser, forthAnwser;
     boolean basketball, rowing, weightLifting, canoeing, boxing;
-    String resultForFirstQuesion, resultForSecondQuesion, resultForThirdQuesion, resultForForthQuesion, resultForFithQuesion, resultForSixthQuesion, resultForSeventhQuesion;
+    String resultForFirstQuesion, resultForSecondQuesion, resultForThirdQuesion, resultForForthQuesion,
+            resultForFifthQuesion, resultForSixthQuesion, resultForSeventhQuesion;
 
     public void getResults(View view) {
     /*
@@ -42,28 +43,28 @@ public class MainActivity extends Activity {
     *geting anwser for third question;
     */
         if (thirdAnwserRadio.getText().toString().equals("Less than 3 millions")) {
-            resultForFithQuesion = "correct";
+            resultForThirdQuesion = "correct";
             result++;
         } else {
-            resultForFithQuesion = "wrong";
+            resultForThirdQuesion = "wrong";
         }
     /*
     *geting anwser for forth question;
     */
-        if (forthAnserRadio.getText().toString().equals("Less than 3 millions")) {
-            resultForFithQuesion = "correct";
+        if (forthAnserRadio.getText().toString().equals("Basketball")) {
+            resultForForthQuesion = "correct";
             result++;
         } else {
-            resultForFithQuesion = "wrong";
+            resultForForthQuesion = "wrong";
         }
     /*
-    *geting anwser for fith question;
+    *geting anwser for fifth question;
     */
-        if (fithAnwser.getText().toString().equals("Basketball")) {
-            resultForFithQuesion = "correct";
+        if (fifthAnwser.getText().toString().equals("Basketball")) {
+            resultForFifthQuesion = "correct";
             result++;
         } else {
-            resultForFithQuesion = "wrong";
+            resultForFifthQuesion = "wrong";
         }
     /*
     *geting anwser for sixth question;
@@ -85,7 +86,7 @@ public class MainActivity extends Activity {
         }
 
 
-        String resultMessage = createResultsReport(result, resultForFirstQuesion, resultForSecondQuesion, resultForFithQuesion, resultForSixthQuesion, resultForSeventhQuesion);
+        String resultMessage = createResultsReport(result, resultForFirstQuesion, resultForSecondQuesion, resultForThirdQuesion, resultForForthQuesion, resultForFifthQuesion, resultForSixthQuesion, resultForSeventhQuesion);
         displayResult(resultMessage);
         result = 0;
     }
@@ -93,14 +94,15 @@ public class MainActivity extends Activity {
     /*
     *create results report
      */
-    public String createResultsReport(int result, String resultForFirstQuesion, String resultForSecondQuesion, String resultForFithQuesion,
+    public String createResultsReport(int result, String resultForFirstQuesion, String resultForSecondQuesion,
+                                      String resultForThirdQuesion, String resultForForthQuesion, String resultForFifthQuesion,
                                       String resultForSixthQuesion, String resultForSeventhQuesion){
         String resultMessage = "You have anwsered to " + result + " questions corectly.";
         resultMessage += "\nAnwser for first question is " + resultForFirstQuesion;
         resultMessage += "\nAnwser for second question is " + resultForSecondQuesion;
-//        resultMessage += "\nAnwser for third question is " + resultForThirdQuesion;
-//        resultMessage += "\nAnwser for forth question is " + resultForForthQuesion;
-        resultMessage += "\nAnwser for fith question is " + resultForFithQuesion;
+        resultMessage += "\nAnwser for third question is " + resultForThirdQuesion;
+        resultMessage += "\nAnwser for forth question is " + resultForForthQuesion;
+        resultMessage += "\nAnwser for fifth question is " + resultForFifthQuesion;
         resultMessage += "\nAnwser for sixth question is " + resultForSixthQuesion;
         resultMessage += "\nAnwser for seventh question is " + resultForSeventhQuesion;
         return resultMessage;
@@ -113,7 +115,7 @@ public class MainActivity extends Activity {
 
         firstAnswer = (EditText)findViewById(R.id.firstAnwser);
         secondAnswer = (EditText)findViewById(R.id.secondAnwser);
-        fithAnwser = (EditText)findViewById(R.id.fithAnwser);
+        fifthAnwser = (EditText)findViewById(R.id.fifthAnwser);
         CheckBox checkBoxBasketball, checkBoxRowing, checkBoxWheightLifting, checkBoxCanoeing, checkBoxBoxing;
         checkBoxBasketball = (CheckBox)findViewById(R.id.checkbox_basketball);
         basketball = checkBoxBasketball.isChecked();
