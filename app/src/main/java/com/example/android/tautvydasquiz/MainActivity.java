@@ -1,8 +1,11 @@
 package com.example.android.tautvydasquiz;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,11 +16,11 @@ public class MainActivity extends Activity {
 
     private EditText firstAnswer, secondAnswer, fifthAnwser, seventhAnwser;
     private RadioGroup thirdQuestion, forthQuestion;
-    private RadioButton thirdAnwserRadio, forthAnserRadio;
-    private int thirdAnwser, forthAnwser;
+    private RadioButton thirdAnwserRadio, forthAnwserRadio;
+    private CheckBox checkBoxBasketball, checkBoxRowing, checkBoxWheightLifting, checkBoxCanoeing, checkBoxBoxing;
     boolean basketball, rowing, weightLifting, canoeing, boxing;
     String resultForFirstQuesion, resultForSecondQuesion, resultForThirdQuesion, resultForForthQuesion,
-            resultForFifthQuesion, resultForSixthQuesion, resultForSeventhQuesion;
+            resultForFifthQuesion, resultForSixthQuesion, resultForSeventhQuesion, resultMessage;
 
     public void getResults(View view) {
     /*
@@ -50,7 +53,7 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for forth question;
     */
-        if (forthQuestion.getCheckedRadioButtonId() == forthAnserRadio.getId()) {
+        if (forthQuestion.getCheckedRadioButtonId() == forthAnwserRadio.getId()) {
             resultForForthQuesion = "correct";
             result++;
         } else {
@@ -68,12 +71,12 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for sixth question;
     */
-//        if ((basketball && boxing) != (canoeing && rowing && weightLifting)) {
-//            resultForSixthQuesion = "correct";
-//            result++;
-//        } else {
-//            resultForSixthQuesion = "wrong";
-//        }
+        if (basketball) {
+            resultForSixthQuesion = "correct";
+            result++;
+        } else {
+            resultForSixthQuesion = "wrong";
+        }
     /*
     *geting anwser for seventh question;
     */
@@ -85,7 +88,9 @@ public class MainActivity extends Activity {
         }
 
 
-        String resultMessage = createResultsReport(result, resultForFirstQuesion, resultForSecondQuesion, resultForThirdQuesion, resultForForthQuesion, resultForFifthQuesion, resultForSixthQuesion, resultForSeventhQuesion);
+        resultMessage = createResultsReport(result, resultForFirstQuesion, resultForSecondQuesion,
+                resultForThirdQuesion, resultForForthQuesion, resultForFifthQuesion,
+                resultForSixthQuesion, resultForSeventhQuesion);
         displayResult(resultMessage);
         result = 0;
     }
@@ -102,36 +107,58 @@ public class MainActivity extends Activity {
         resultMessage += "\nAnwser for third question is " + resultForThirdQuesion;
         resultMessage += "\nAnwser for forth question is " + resultForForthQuesion;
         resultMessage += "\nAnwser for fifth question is " + resultForFifthQuesion;
-//        resultMessage += "\nAnwser for sixth question is " + resultForSixthQuesion;
+        resultMessage += "\nAnwser for sixth question is " + resultForSixthQuesion;
         resultMessage += "\nAnwser for seventh question is " + resultForSeventhQuesion;
         return resultMessage;
     }
-
+    /*
+    *Intent to maps app to find correct anwser
+     */
+    public void getDirections(View view){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("geo:54.687157,25.279652")); // should fire maps app
+        intent.putExtra(Intent.EXTRA_SUBJECT, "My results on Lithuania Quiz app");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+    /*
+    *Intent to email app to share results to firends.
+     */
+    public void shareEmail(View view){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "My results on Lithuania Quiz app");
+        intent.putExtra(Intent.EXTRA_TEXT, resultMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firstAnswer = (EditText)findViewById(R.id.firstAnwser);
-        secondAnswer = (EditText)findViewById(R.id.secondAnwser);
-        fifthAnwser = (EditText)findViewById(R.id.fifthAnwser);
-//        CheckBox checkBoxBasketball, checkBoxRowing, checkBoxWheightLifting, checkBoxCanoeing, checkBoxBoxing;
-//        checkBoxBasketball = (CheckBox)findViewById(R.id.checkbox_basketball);
-//        basketball = checkBoxBasketball.isChecked();
-//        checkBoxBoxing = (CheckBox)findViewById(R.id.checkbox_boxing);
-//        boxing = checkBoxBoxing.isChecked();
-//        checkBoxRowing = (CheckBox)findViewById(R.id.checkbox_rowing);
-//        rowing = checkBoxRowing.isChecked();
-//        checkBoxWheightLifting = (CheckBox)findViewById(R.id.checkbox_weightlifting);
-//        weightLifting = checkBoxWheightLifting.isChecked();
-//        checkBoxCanoeing = (CheckBox)findViewById(R.id.checkbox_canoeing);
-//        canoeing = checkBoxCanoeing.isChecked();
-        seventhAnwser = (EditText)findViewById(R.id.seventhAnwser);
+        firstAnswer = (EditText) findViewById(R.id.firstAnwser);
+        secondAnswer = (EditText) findViewById(R.id.secondAnwser);
+        fifthAnwser = (EditText) findViewById(R.id.fifthAnwser);
+
+        checkBoxBasketball = (CheckBox) findViewById(R.id.checkbox_basketball);
+        basketball = checkBoxBasketball.isChecked();
+        checkBoxBoxing = (CheckBox) findViewById(R.id.checkbox_boxing);
+        boxing = checkBoxBoxing.isChecked();
+        checkBoxRowing = (CheckBox) findViewById(R.id.checkbox_rowing);
+        rowing = checkBoxRowing.isChecked();
+        checkBoxWheightLifting = (CheckBox) findViewById(R.id.checkbox_weightlifting);
+        weightLifting = checkBoxWheightLifting.isChecked();
+        checkBoxCanoeing = (CheckBox) findViewById(R.id.checkbox_canoeing);
+        canoeing = checkBoxCanoeing.isChecked();
+        seventhAnwser = (EditText) findViewById(R.id.seventhAnwser);
 
         thirdQuestion = (RadioGroup)findViewById(R.id.third_question);
         thirdAnwserRadio = (RadioButton)findViewById(R.id.lessThanThree);
         forthQuestion = (RadioGroup)findViewById(R.id.forth_question);
-        forthAnserRadio = (RadioButton)findViewById(R.id.Basketball);
+        forthAnwserRadio = (RadioButton)findViewById(R.id.Basketball);
     }
 
 
@@ -142,19 +169,7 @@ public class MainActivity extends Activity {
         TextView quizResultTextView = (TextView) findViewById(R.id.display_result);
         quizResultTextView.setText(message);
     }
-    /*
-    *Intent to email app to share results to firends.
-     */
-//    private void share_email (View view, String resultMessage){
-//        Button shareResults = (Button)findViewById(R.id.share_result);
-//        Intent intent = new Intent(Intent.ACTION_SENDTO);
-//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-//        intent.putExtra(Intent.EXTRA_SUBJECT, "My results on Lithuania Quiz app");
-//        intent.putExtra(Intent.EXTRA_TEXT, resultMessage);
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            startActivity(intent);
-//        }
-//    }
+
 }
 
 
