@@ -3,7 +3,6 @@ package com.example.android.tautvydasquiz;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -42,7 +41,7 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for third question;
     */
-        if (thirdAnwserRadio.getText().toString().equals("Less than 3 millions")) {
+        if (thirdQuestion.getCheckedRadioButtonId() == thirdAnwserRadio.getId()) {
             resultForThirdQuesion = "correct";
             result++;
         } else {
@@ -51,7 +50,7 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for forth question;
     */
-        if (forthAnserRadio.getText().toString().equals("Basketball")) {
+        if (forthQuestion.getCheckedRadioButtonId() == forthAnserRadio.getId()) {
             resultForForthQuesion = "correct";
             result++;
         } else {
@@ -60,7 +59,7 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for fifth question;
     */
-        if (fifthAnwser.getText().toString().equals("Basketball")) {
+        if (fifthAnwser.getText().toString().equals("4")) {
             resultForFifthQuesion = "correct";
             result++;
         } else {
@@ -69,12 +68,12 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for sixth question;
     */
-        if ((basketball && boxing) != (canoeing && rowing && weightLifting)) {
-            resultForSixthQuesion = "correct";
-            result++;
-        } else {
-            resultForSixthQuesion = "wrong";
-        }
+//        if ((basketball && boxing) != (canoeing && rowing && weightLifting)) {
+//            resultForSixthQuesion = "correct";
+//            result++;
+//        } else {
+//            resultForSixthQuesion = "wrong";
+//        }
     /*
     *geting anwser for seventh question;
     */
@@ -103,7 +102,7 @@ public class MainActivity extends Activity {
         resultMessage += "\nAnwser for third question is " + resultForThirdQuesion;
         resultMessage += "\nAnwser for forth question is " + resultForForthQuesion;
         resultMessage += "\nAnwser for fifth question is " + resultForFifthQuesion;
-        resultMessage += "\nAnwser for sixth question is " + resultForSixthQuesion;
+//        resultMessage += "\nAnwser for sixth question is " + resultForSixthQuesion;
         resultMessage += "\nAnwser for seventh question is " + resultForSeventhQuesion;
         return resultMessage;
     }
@@ -116,25 +115,23 @@ public class MainActivity extends Activity {
         firstAnswer = (EditText)findViewById(R.id.firstAnwser);
         secondAnswer = (EditText)findViewById(R.id.secondAnwser);
         fifthAnwser = (EditText)findViewById(R.id.fifthAnwser);
-        CheckBox checkBoxBasketball, checkBoxRowing, checkBoxWheightLifting, checkBoxCanoeing, checkBoxBoxing;
-        checkBoxBasketball = (CheckBox)findViewById(R.id.checkbox_basketball);
-        basketball = checkBoxBasketball.isChecked();
-        checkBoxBoxing = (CheckBox)findViewById(R.id.checkbox_boxing);
-        boxing = checkBoxBoxing.isChecked();
-        checkBoxRowing = (CheckBox)findViewById(R.id.checkbox_rowing);
-        rowing = checkBoxRowing.isChecked();
-        checkBoxWheightLifting = (CheckBox)findViewById(R.id.checkbox_weightlifting);
-        weightLifting = checkBoxWheightLifting.isChecked();
-        checkBoxCanoeing = (CheckBox)findViewById(R.id.checkbox_canoeing);
-        canoeing = checkBoxCanoeing.isChecked();
+//        CheckBox checkBoxBasketball, checkBoxRowing, checkBoxWheightLifting, checkBoxCanoeing, checkBoxBoxing;
+//        checkBoxBasketball = (CheckBox)findViewById(R.id.checkbox_basketball);
+//        basketball = checkBoxBasketball.isChecked();
+//        checkBoxBoxing = (CheckBox)findViewById(R.id.checkbox_boxing);
+//        boxing = checkBoxBoxing.isChecked();
+//        checkBoxRowing = (CheckBox)findViewById(R.id.checkbox_rowing);
+//        rowing = checkBoxRowing.isChecked();
+//        checkBoxWheightLifting = (CheckBox)findViewById(R.id.checkbox_weightlifting);
+//        weightLifting = checkBoxWheightLifting.isChecked();
+//        checkBoxCanoeing = (CheckBox)findViewById(R.id.checkbox_canoeing);
+//        canoeing = checkBoxCanoeing.isChecked();
         seventhAnwser = (EditText)findViewById(R.id.seventhAnwser);
 
         thirdQuestion = (RadioGroup)findViewById(R.id.third_question);
-        thirdAnwser = thirdQuestion.getCheckedRadioButtonId();
-        thirdAnwserRadio = (RadioButton)findViewById(thirdAnwser);
+        thirdAnwserRadio = (RadioButton)findViewById(R.id.lessThanThree);
         forthQuestion = (RadioGroup)findViewById(R.id.forth_question);
-        forthAnwser = forthQuestion.getCheckedRadioButtonId();
-        forthAnserRadio = (RadioButton)findViewById(forthAnwser);
+        forthAnserRadio = (RadioButton)findViewById(R.id.Basketball);
     }
 
 
@@ -145,6 +142,19 @@ public class MainActivity extends Activity {
         TextView quizResultTextView = (TextView) findViewById(R.id.display_result);
         quizResultTextView.setText(message);
     }
+    /*
+    *Intent to email app to share results to firends.
+     */
+//    private void share_email (View view, String resultMessage){
+//        Button shareResults = (Button)findViewById(R.id.share_result);
+//        Intent intent = new Intent(Intent.ACTION_SENDTO);
+//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+//        intent.putExtra(Intent.EXTRA_SUBJECT, "My results on Lithuania Quiz app");
+//        intent.putExtra(Intent.EXTRA_TEXT, resultMessage);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+//        }
+//    }
 }
 
 
