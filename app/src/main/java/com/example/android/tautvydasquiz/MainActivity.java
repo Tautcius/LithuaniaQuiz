@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     int result = 0; //counting results;
@@ -71,7 +73,13 @@ public class MainActivity extends Activity {
     /*
     *geting anwser for sixth question;
     */
-        if (basketball) {
+        basketball = checkBoxBasketball.isChecked();
+        boxing = checkBoxBoxing.isChecked();
+        rowing = checkBoxRowing.isChecked();
+        weightLifting = checkBoxWheightLifting.isChecked();
+        canoeing = checkBoxCanoeing.isChecked();
+        Log.v("MainActivity", "basketball is " + basketball);
+        if ((rowing && weightLifting && canoeing) && !(basketball && boxing)) {
             resultForSixthQuesion = "correct";
             result++;
         } else {
@@ -87,12 +95,13 @@ public class MainActivity extends Activity {
             resultForSeventhQuesion = "wrong";
         }
 
-
+        Toast.makeText(this, "Don't forget to share your results!", Toast.LENGTH_SHORT).show();
         resultMessage = createResultsReport(result, resultForFirstQuesion, resultForSecondQuesion,
                 resultForThirdQuesion, resultForForthQuesion, resultForFifthQuesion,
                 resultForSixthQuesion, resultForSeventhQuesion);
         displayResult(resultMessage);
         result = 0;
+
     }
 
     /*
@@ -138,23 +147,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         firstAnswer = (EditText) findViewById(R.id.firstAnwser);
         secondAnswer = (EditText) findViewById(R.id.secondAnwser);
         fifthAnwser = (EditText) findViewById(R.id.fifthAnwser);
-
         checkBoxBasketball = (CheckBox) findViewById(R.id.checkbox_basketball);
-        basketball = checkBoxBasketball.isChecked();
         checkBoxBoxing = (CheckBox) findViewById(R.id.checkbox_boxing);
-        boxing = checkBoxBoxing.isChecked();
         checkBoxRowing = (CheckBox) findViewById(R.id.checkbox_rowing);
-        rowing = checkBoxRowing.isChecked();
         checkBoxWheightLifting = (CheckBox) findViewById(R.id.checkbox_weightlifting);
-        weightLifting = checkBoxWheightLifting.isChecked();
         checkBoxCanoeing = (CheckBox) findViewById(R.id.checkbox_canoeing);
-        canoeing = checkBoxCanoeing.isChecked();
         seventhAnwser = (EditText) findViewById(R.id.seventhAnwser);
-
         thirdQuestion = (RadioGroup)findViewById(R.id.third_question);
         thirdAnwserRadio = (RadioButton)findViewById(R.id.lessThanThree);
         forthQuestion = (RadioGroup)findViewById(R.id.forth_question);
